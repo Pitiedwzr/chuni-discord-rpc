@@ -117,7 +117,7 @@ fn main() {
                         .state(&state_text)
                         .details(&details_text)
                         .timestamps(activity::Timestamps::new().start(start_time)) // Adds the timer
-                        .assets(activity::Assets::new().large_image("large_image_name"));
+                        .assets(activity::Assets::new().large_image("logo_large_square"));
                     if let Err(e) = client.set_activity(payload) {
                         println!("Discord Rate Limit / Error: {}", e);
                         is_discord_connected = false;
