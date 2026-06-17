@@ -115,8 +115,8 @@ fn main() {
                 if is_discord_connected {
                     let payload = activity::Activity::new()
                         // WHY DISCORD PUT STATUS ON THE BOTTOM??
-                        .state(&detail_text)
-                        .details(&status_text)
+                        .state(&status_text)
+                        .details(&detail_text)
                         .timestamps(activity::Timestamps::new().start(start_time)) // Adds the timer
                         .assets(activity::Assets::new().large_image("logo_large_square"));
                     if let Err(e) = client.set_activity(payload) {
