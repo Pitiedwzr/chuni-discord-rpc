@@ -5,11 +5,14 @@
 
 Discord Rich Presence for CHUNITHM
 
-# Features
+## Features
 - Display details like song information, playing status.
 - Easy to configure for different version (Check [document](docs/memory_pointers.md) for more detail).
 
-# Install
+## Install
+> [!NOTICE]
+> This program only tested on X-VERSE-X (v2.45), If it doesn't work, please open an issue.
+
 
 1. Go to the [Release page](https://github.com/Pitiedwzr/chuni-discord-rpc/releases/latest) and download `chuni-discord-rpc.exe`, put it inside the `game/bin` (same folder with your `launch.bat` or `start.bat`)
 
@@ -21,7 +24,7 @@ start /min .\chuni-discord-rpc.exe
 
 3. Start the game as usual and enjoy!
 
-# Build
+## Build
 
 ```
 git clone https://github.com/Pitiedwzr/chuni-discord-rpc.git
@@ -29,7 +32,7 @@ cd chuni-discord-rpc
 cargo build --release
 ```
 
-# Licence
+## Licence
 
 Distributed under the [MIT Licence](LICENSE).
 
