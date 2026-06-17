@@ -71,22 +71,22 @@ fn main() {
 
         if let (Some(m_id), Some(d_id)) = (music_id, diff_id) {
 
-            let mut state_text = String::from("In Menus");
-            let mut details_text = String::from("Navigating...");
+            let mut detail_text = String::from("In Menus");
+            let mut status_text = String::from("Navigating...");
 
             if m_id == -1 {
                 // PLAYING (Music ID turned to -1)
                 // Use cached variables
                 if let Some(song) = song_db.get(&cached_music_id) {
-                    state_text = format!("Playing: {} - {}", song.artist, song.title);
+                    detail_text = format!("Playing: {} - {}", song.artist, song.title);
 
                     let diff_str = song.difficulties.get(&cached_diff_id).unwrap_or(&String::from("?")).clone();
                     let diff_name = get_diff_name(cached_diff_id);
 
                     if cached_diff_id == 5 {
-                        details_text = format!("WORLD'S END [{}]", song.we_tag);
+                        status_text = format!("WORLD'S END [{}]", song.we_tag);
                     } else {
-                        details_text = format!("{} (Lv. {})", diff_name, diff_str);
+                        status_text = format!("{} (Lv. {})", diff_name, diff_str);
                     }
                 }
             } else {
@@ -96,17 +96,17 @@ fn main() {
                 cached_diff_id = d_id;
 
                 if let Some(song) = song_db.get(&cached_music_id) {
-                    state_text = String::from("Selecting Track...");
-                    details_text = format!("{} - {}", song.artist, song.title);
+                    detail_text = String::from("Selecting Track...");
+                    status_text = format!("{} - {}", song.artist, song.title);
                 }
             }
 
             // Only send to Discord if the text changed!
-            if state_text != last_state || details_text != last_details {
+            if detail_text != last_state || status_text != last_details {
 
                 // Update our memory of what we just sent
-                last_state = state_text.clone();
-                last_details = details_text.clone();
+                last_state = detail_text.clone();
+                last_details = status_text.clone();
                 // Get the exact current time for the Discord Timer
                 start_time = SystemTime::now()
                     .duration_since(UNIX_EPOCH)
@@ -114,15 +114,16 @@ fn main() {
                     .as_secs() as i64;
                 if is_discord_connected {
                     let payload = activity::Activity::new()
-                        .state(&state_text)
-                        .details(&details_text)
+                        // WHY DISCORD PUT STATUS ON THE BOTTOM??
+                        .state(&detail_text)
+                        .details(&status_text)
                         .timestamps(activity::Timestamps::new().start(start_time)) // Adds the timer
                         .assets(activity::Assets::new().large_image("logo_large_square"));
                     if let Err(e) = client.set_activity(payload) {
                         println!("Discord Rate Limit / Error: {}", e);
                         is_discord_connected = false;
                     } else {
-                        println!("Discord Updated: {} | {}", state_text, details_text);
+                        println!("Discord Updated: {} | {}", detail_text, status_text);
                     }
                 }
             }
