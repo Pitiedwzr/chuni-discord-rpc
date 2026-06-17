@@ -10,7 +10,7 @@ Discord Rich Presence for CHUNITHM
 - Easy to configure for different version (Check [document](docs/memory_pointers.md) for more detail).
 
 ## Install
-> [!NOTICE]
+> [!NOTE]
 > This program only tested on X-VERSE-X (v2.45), If it doesn't work, please open an issue.
 
 
