@@ -3,8 +3,7 @@ This Pointer will give "159" or "4294967295" when current choice is not a music 
 
 | Base Address | Offset 0 | Offset 1 | Offset 2 | Offset 3 |
 | - | - | - | - | - |
-| "chusanApp.exe"+0185F37C | 3C | 4 | 1B8 | 794 |
-| "chusanApp.exe"+0185F37C | 3C | 10 | 1B8 | 794 |
+| "chusanApp.exe"+0185F37C | 3C | 10 | 1B4 | 2B4 |
 
 # Selected Music Difficult:
 
